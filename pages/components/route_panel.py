@@ -32,11 +32,3 @@ class RoutePanel(BasePage):
             self.get_text(RoutePanelLocators.TYPE_AND_TIME_LABEL),
             self.get_text(RoutePanelLocators.PRICE_LABEL)
         )
-
-    def get_route_info_on_tab_switch(self):
-        self.wait_until_visible(RoutePanelLocators.RESULT_PANEL)
-
-        route_info_quick = self.get_route_info_text()
-        self.click_optimum_tab()
-        route_info_optimum = self.get_route_info_text()
-        return route_info_quick != route_info_optimum
