@@ -17,7 +17,7 @@ class TestRoutePanel:
         home_page.route_panel.fill_route()
 
         route_info_quick = home_page.route_panel.get_route_info_text()
-        home_page.tariff_block.click_optimum_tab()
+        home_page.modes_block.click_optimum_tab()
 
         assert home_page.route_panel.get_route_info_text() != route_info_quick, \
             "Данные о стоимости и времени маршрута не пересчитались после смены таба"
