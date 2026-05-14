@@ -1,4 +1,5 @@
 from selenium.common import TimeoutException
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -18,6 +19,11 @@ class BasePage:
     def type_text(self, locator, text):
         self.wait_until_visible(locator)
         self.driver.find_element(*locator).send_keys(text)
+
+    def hover_over_element(self, locator):
+        element = self.find_element_with_wait(locator)
+        action = ActionChains(self.driver).move_to_element(element)
+        action.perform()
 
     def get_text(self, locator):
         return self.find_element_with_wait(locator).text
