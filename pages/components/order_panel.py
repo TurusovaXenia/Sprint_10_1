@@ -1,3 +1,4 @@
+from data import TariffType
 from locators.components.order_panel_locators import OrderPanelLocators
 from pages.base_page import BasePage
 
@@ -41,6 +42,21 @@ class OrderPanel(BasePage):
                 self.is_element_visible(OrderPanelLocators.PHONE_FIELD) and
                 self.is_element_visible(OrderPanelLocators.PAYMENT_METHOD_FIELD) and
                 self.is_element_visible(OrderPanelLocators.COMMENT_FIELD) and
-                self.is_element_visible(OrderPanelLocators.REQUIREMENTS_FIELD) and
-                self.is_element_visible(OrderPanelLocators.ORDER_TAXI_BUTTON)
+                self.is_element_visible(OrderPanelLocators.REQUIREMENTS_DROPDOWN) and
+                self.is_element_visible(OrderPanelLocators.ENTER_NUMBER_AND_ORDER_TAXI_BUTTON)
         )
+
+    def click_requirements_dropdown(self):
+        self.click_element(OrderPanelLocators.REQUIREMENTS_DROPDOWN)
+
+    def activate_laptop_option(self):
+        self.click_element(OrderPanelLocators.LAPTOP_SWITCHER)
+
+    def click_call_taxi_button(self):
+        self.click_element(OrderPanelLocators.ENTER_NUMBER_AND_ORDER_TAXI_BUTTON)
+
+    def complete_taxi_order(self, tariff_name):
+        self.click_tariff_card(tariff_name),
+        self.click_requirements_dropdown()
+        self.activate_laptop_option()
+        self.click_call_taxi_button()

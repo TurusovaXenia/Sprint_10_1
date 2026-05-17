@@ -1,6 +1,7 @@
 from pages.base_page import BasePage
 from pages.components.map_block import MapBlock
 from pages.components.order_panel import OrderPanel
+from pages.components.order_waiting_modal import OrderWaitingModal
 from pages.components.route_panel import RoutePanel
 
 
@@ -10,3 +11,4 @@ class HomePage(BasePage):
         self.route_panel = RoutePanel(driver)
         self.map = MapBlock(driver)
         self.order_panel = OrderPanel(driver)
+        self.order_waiting_modal = OrderWaitingModal(driver)

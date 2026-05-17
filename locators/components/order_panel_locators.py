@@ -12,5 +12,6 @@ class OrderPanelLocators:
     PHONE_FIELD = (By.XPATH, ".//div[text()='Телефон']")
     PAYMENT_METHOD_FIELD = (By.XPATH, ".//div[contains(@class, 'pp-button filled')]/div[text()='Способ оплаты']")
     COMMENT_FIELD = (By.ID, "comment")
-    REQUIREMENTS_FIELD = (By.XPATH, ".//div[text()='Требования к заказу']")
-    ORDER_TAXI_BUTTON = (By.CSS_SELECTOR, "button[class='smart-button']")
+    REQUIREMENTS_DROPDOWN = (By.XPATH, ".//div[text()='Требования к заказу']")
+    LAPTOP_SWITCHER = (By.CSS_SELECTOR, "span[class='slider round']")
+    ENTER_NUMBER_AND_ORDER_TAXI_BUTTON = (By.CSS_SELECTOR, "button[class='smart-button']")
