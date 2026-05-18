@@ -7,6 +7,6 @@ class MapBlock(BasePage):
         self.wait_until_visible(MapBlockLocators.FROM_DOT)
 
         return (
-                self.is_element_visible(MapBlockLocators.FROM_DOT) and
-                self.is_element_visible(MapBlockLocators.TO_DOT)
+                self.is_element_visible_now(MapBlockLocators.FROM_DOT) and
+                self.is_element_visible_now(MapBlockLocators.TO_DOT)
         )

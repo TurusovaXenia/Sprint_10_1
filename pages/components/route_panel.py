@@ -19,7 +19,7 @@ class RoutePanel(BasePage):
         self.fill_to_field(Address.FROM_ADDRESS)
 
     def is_panel_displayed(self):
-        return self.is_element_visible(RoutePanelLocators.ORDER_TAXI_BUTTON)
+        return self.is_element_visible_with_wait(RoutePanelLocators.ORDER_TAXI_BUTTON)
 
     def get_route_info_text(self):
         return {
@@ -51,13 +51,13 @@ class RoutePanel(BasePage):
         return True
 
     def is_order_taxi_button_visible(self):
-        return self.is_element_visible(RoutePanelLocators.ORDER_TAXI_BUTTON)
+        return self.is_element_visible_with_wait(RoutePanelLocators.ORDER_TAXI_BUTTON)
 
     def click_drive_type(self):
         self.click_element(RoutePanelLocators.TYPE_DRIVE_BUTTON)
 
     def is_book_button_visible(self):
-        return self.is_element_visible(RoutePanelLocators.BOOK_BUTTON)
+        return self.is_element_visible_now(RoutePanelLocators.BOOK_BUTTON)
 
     def click_order_taxi_button(self):
         self.click_element(RoutePanelLocators.ORDER_TAXI_BUTTON)

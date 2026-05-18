@@ -1,4 +1,4 @@
-from selenium.common import TimeoutException
+from selenium.common import TimeoutException, NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,6 +15,10 @@ class BasePage:
     def click_element(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
+
+    def js_click_element(self, locator):
+        element = self.find_element_with_wait(locator)
+        self.driver.execute_script("arguments[0].click();", element)
 
     def type_text(self, locator, text):
         self.wait_until_visible(locator)
@@ -43,11 +47,20 @@ class BasePage:
     def wait_until_visible(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator))
 
-    def is_element_visible(self, locator):
+    def wait_until_invisible(self, locator):
+        return self.wait.until(EC.invisibility_of_element_located(locator))
+
+    def is_element_visible_with_wait(self, locator):
         try:
             self.wait_until_visible(locator)
             return True
         except TimeoutException:
+            return False
+
+    def is_element_visible_now(self, locator):
+        try:
+            return self.driver.find_element(*locator).is_displayed()
+        except NoSuchElementException:
             return False
 
     def is_element_active(self, locator):

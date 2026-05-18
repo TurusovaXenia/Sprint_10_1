@@ -1,4 +1,5 @@
-from data import TariffType
+import re
+
 from locators.components.order_panel_locators import OrderPanelLocators
 from pages.base_page import BasePage
 
@@ -35,15 +36,23 @@ class OrderPanel(BasePage):
             self.get_text((method, final_xpath_description))
         }
 
+    def get_tariff_price(self, tariff_name):
+        method, xpath_template = OrderPanelLocators.TARIFF_PRICE
+        final_xpath = xpath_template.format(tariff_name=tariff_name)
+        price = self.get_text((method, final_xpath))
+
+        clean_price = re.sub(r"\D", "", price)
+        return clean_price
+
     def are_fields_for_order_visible(self):
         self.wait_until_visible(OrderPanelLocators.TARIFFS_LIST)
 
         return (
-                self.is_element_visible(OrderPanelLocators.PHONE_FIELD) and
-                self.is_element_visible(OrderPanelLocators.PAYMENT_METHOD_FIELD) and
-                self.is_element_visible(OrderPanelLocators.COMMENT_FIELD) and
-                self.is_element_visible(OrderPanelLocators.REQUIREMENTS_DROPDOWN) and
-                self.is_element_visible(OrderPanelLocators.ENTER_NUMBER_AND_ORDER_TAXI_BUTTON)
+                self.is_element_visible_now(OrderPanelLocators.PHONE_FIELD) and
+                self.is_element_visible_now(OrderPanelLocators.PAYMENT_METHOD_FIELD) and
+                self.is_element_visible_now(OrderPanelLocators.COMMENT_FIELD) and
+                self.is_element_visible_now(OrderPanelLocators.REQUIREMENTS_DROPDOWN) and
+                self.is_element_visible_now(OrderPanelLocators.ENTER_NUMBER_AND_ORDER_TAXI_BUTTON)
         )
 
     def click_requirements_dropdown(self):
@@ -52,11 +61,5 @@ class OrderPanel(BasePage):
     def activate_laptop_option(self):
         self.click_element(OrderPanelLocators.LAPTOP_SWITCHER)
 
-    def click_call_taxi_button(self):
+    def click_confirm_order_button(self):
         self.click_element(OrderPanelLocators.ENTER_NUMBER_AND_ORDER_TAXI_BUTTON)
-
-    def complete_taxi_order(self, tariff_name):
-        self.click_tariff_card(tariff_name),
-        self.click_requirements_dropdown()
-        self.activate_laptop_option()
-        self.click_call_taxi_button()

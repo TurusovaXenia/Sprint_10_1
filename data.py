@@ -37,3 +37,6 @@ class TariffsData:
         TariffType.COMFORTING: "Если хочется свернуться калачиком",
         TariffType.GLOSSY: "Если нужно блистать"
     }
+
+class OrderStatusModalData:
+    WAITING_HEADER_TEXT = "Поиск машины"
