@@ -1,7 +1,11 @@
+import allure
+
 from data import TariffType
 
 
+@allure.suite("Флоу заказа такси")
 class TestTaxiOrderingFlow:
+    @allure.title("Проверка элементов окна 'Ожидание машины' на соответствие ТЗ")
     def test_successful_order_workable_tariff_with_laptop_waiting_car_modal_matches_spec(self, home_page):
         home_page.route_panel.order_taxi()
         home_page.order_panel.click_tariff_card(TariffType.WORKABLE)
@@ -12,6 +16,7 @@ class TestTaxiOrderingFlow:
         assert home_page.order_status_modal.verify_waiting_car_modal_elements_and_text(), \
             "Окно ожидания машины не соответствует требованиям ТЗ (ошибка в элементах или тексте заголовка)"
 
+    @allure.title("Проверка элементов окна 'Совершенный заказ' на соответствие ТЗ")
     def test_successful_order_workable_tariff_with_laptop_completed_modal_matches_spec(self, home_page):
         home_page.route_panel.order_taxi()
         home_page.order_panel.click_tariff_card(TariffType.WORKABLE)
@@ -22,10 +27,13 @@ class TestTaxiOrderingFlow:
         assert home_page.order_status_modal.verify_completed_order_modal_elements_and_text(), \
             "Окно совершенного заказа не соответствует требованиям ТЗ (ошибка в элементах или тексте заголовка)"
 
+    @allure.title("Проверка равенства цены при выборе тарифа и цены в деталях заказа")
     def test_tariff_price_matches_order_details(self, home_page):
         home_page.route_panel.order_taxi()
         home_page.order_panel.click_tariff_card(TariffType.WORKABLE)
-        tariff_price = home_page.order_panel.get_tariff_price(TariffType.WORKABLE)
+
+        with allure.step("Получить стоимость поездки при выборе тарифа"):
+            tariff_price = home_page.order_panel.get_tariff_price(TariffType.WORKABLE)
 
         home_page.order_panel.click_requirements_dropdown()
         home_page.order_panel.activate_laptop_option()
@@ -33,8 +41,10 @@ class TestTaxiOrderingFlow:
 
         home_page.order_status_modal.click_details_button()
 
-        assert home_page.order_status_modal.get_ride_price() == tariff_price
+        with allure.step("Проверка равенства цены в деталях заказа и цены при выборе тарифа"):
+            assert home_page.order_status_modal.get_ride_price() == tariff_price
 
+    @allure.title("Проверка закрытия окна 'Ожидание машины' при клике на кнопку 'Отмена'")
     def test_click_cancel_button_closes_modal(self, home_page):
         home_page.route_panel.order_taxi()
         home_page.order_panel.click_tariff_card(TariffType.WORKABLE)

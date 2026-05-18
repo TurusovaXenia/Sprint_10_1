@@ -1,4 +1,9 @@
+import allure
+
+
+@allure.suite("Отрисовка маршрута")
 class TestRouteMap:
+    @allure.title("Проверка отображения двух точек начала и конца маршрута")
     def test_route_points_visibility_on_map(self, home_page):
         home_page.route_panel.fill_route()
 

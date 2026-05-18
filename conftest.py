@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium import webdriver
 
@@ -15,5 +16,7 @@ def driver():
 @pytest.fixture(scope='function')
 def home_page(driver):
     page = HomePage(driver)
-    page.go_to_url(urls.HOME_PAGE_URL)
+    with allure.step("Открыть сервис 'Яндекс.Маршруты'"):
+        page.go_to_url(urls.HOME_PAGE_URL)
+
     return page
