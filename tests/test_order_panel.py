@@ -34,4 +34,4 @@ class TestOrderPanel:
         home_page.route_panel.order_taxi()
 
         assert home_page.order_panel.are_fields_for_order_visible(), \
-            "Кнопки для заказа такси отсутствуют"
+            "Поля для заказа такси не отображены"

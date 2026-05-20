@@ -6,6 +6,7 @@ class RoutePanelLocators:
     TO_INPUT = (By.CSS_SELECTOR, "input[id='to']")
 
     OPTIMUM_TAB = (By.XPATH, ".//div[text()='Оптимальный']")
+    QUICK_TAB = (By.XPATH, ".//div[text()='Быстрый']")
     YOUR_TAB = (By.XPATH, ".//div[text()='Свой']")
 
     TYPES_LIST = (By.CSS_SELECTOR, "div[class='types-container'] > div[class*='type']")

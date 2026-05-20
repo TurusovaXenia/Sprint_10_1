@@ -15,7 +15,7 @@ class RoutePanel(BasePage):
         self.type_text(RoutePanelLocators.TO_INPUT, to_address)
 
     @allure.step("Заполнить маршрут поездки")
-    def fill_route(self):
+    def fill_route_with_default_values(self):
         self.fill_from_field(Address.FROM_ADDRESS)
         self.fill_to_field(Address.TO_ADDRESS)
 
@@ -34,6 +34,10 @@ class RoutePanel(BasePage):
             self.get_text(RoutePanelLocators.TYPE_AND_TIME_LABEL),
             self.get_text(RoutePanelLocators.PRICE_LABEL)
         }
+
+    @allure.step("Клик на вкладку 'Быстрый'")
+    def click_quick_tab(self):
+        self.click_element(RoutePanelLocators.QUICK_TAB)
 
     @allure.step("Клик на вкладку 'Оптимальный'")
     def click_optimum_tab(self):
@@ -81,5 +85,6 @@ class RoutePanel(BasePage):
 
     @allure.step("Заполнить маршрут и клик на кнопку 'Заказать такси'")
     def order_taxi(self):
-        self.fill_route()
+        self.fill_route_with_default_values()
+        self.click_quick_tab()
         self.click_order_taxi_button()
