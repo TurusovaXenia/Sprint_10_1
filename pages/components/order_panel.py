@@ -2,7 +2,7 @@ import re
 
 import allure
 
-from locators.components.order_panel_locators import OrderPanelLocators
+from locators.components import OrderPanelLocators
 from pages.base_page import BasePage
 
 

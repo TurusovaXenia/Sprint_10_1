@@ -3,7 +3,7 @@ import re
 import allure
 
 from data import OrderStatusModalData
-from locators.components.order_status_modal_locators import OrderStatusModalLocators
+from locators.components import OrderStatusModalLocators
 from pages.base_page import BasePage
 
 

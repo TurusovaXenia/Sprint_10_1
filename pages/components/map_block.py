@@ -1,6 +1,6 @@
 import allure
 
-from locators.components.map_block_locators import MapBlockLocators
+from locators.components import MapBlockLocators
 from pages.base_page import BasePage
 
 

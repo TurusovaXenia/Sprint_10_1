@@ -1,8 +1,8 @@
 from pages.base_page import BasePage
-from pages.components.map_block import MapBlock
-from pages.components.order_panel import OrderPanel
-from pages.components.order_status_modal import OrderStatusModal
-from pages.components.route_panel import RoutePanel
+from pages.components import MapBlock
+from pages.components import OrderPanel
+from pages.components import OrderStatusModal
+from pages.components import RoutePanel
 
 
 class HomePage(BasePage):

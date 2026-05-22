@@ -1,7 +1,7 @@
 import allure
 
 from data import Address
-from locators.components.route_panel_locators import RoutePanelLocators
+from locators.components import RoutePanelLocators
 from pages.base_page import BasePage
 
 
