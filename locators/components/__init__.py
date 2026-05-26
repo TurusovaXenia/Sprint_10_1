@@ -1,0 +1,4 @@
+from .map_block_locators import MapBlockLocators
+from .order_panel_locators import OrderPanelLocators
+from .order_status_modal_locators import OrderStatusModalLocators
+from .route_panel_locators import RoutePanelLocators
